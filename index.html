@@ -1,35 +1,922 @@
 <!doctype html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>Maya Digital Course</title>
+  <title>ארגז הכלים הדיגיטלי — מהשטח לאונליין | מאיה סימון</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f9f7f4;
+      color: #1a1a1a;
+      direction: rtl;
+      line-height: 1.7;
     }
 
-    iframe {
-      width: 100%;
-      height: 100vh;
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Utility ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .divider {
       border: none;
+      border-top: 2px solid #e5e0d8;
+      margin: 50px 0;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      text-align: center;
+      padding: 70px 20px 60px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: #f5a623;
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.1rem, 3vw, 1.45rem);
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      font-weight: 600;
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      margin-bottom: 36px;
+    }
+
+    .price-badge {
+      background: rgba(245, 166, 35, 0.15);
+      border: 2px solid #f5a623;
+      border-radius: 12px;
+      display: inline-block;
+      padding: 16px 32px;
+      margin-bottom: 32px;
+    }
+
+    .price-badge .discount-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f5a623;
+      margin-bottom: 6px;
+    }
+
+    .price-badge .price-main {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      background: #f5a623;
+      color: #1a1a1a;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 16px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: none;
+      box-shadow: 0 4px 18px rgba(245,166,35,0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245,166,35,0.45);
+    }
+
+    .btn-center { text-align: center; margin: 32px 0; }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #f5a623;
+      color: #f5a623;
+    }
+
+    .btn-outline:hover {
+      background: #f5a623;
+      color: #1a1a1a;
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 56px 0;
+    }
+
+    section:nth-child(even) {
+      background: #fff;
+    }
+
+    .section-title {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 28px;
+      color: #0f3460;
+      text-align: center;
+    }
+
+    /* ── No-need / Need lists ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 560px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .list-card {
+      background: #f9f7f4;
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+
+    section:nth-child(even) .list-card {
+      background: #f4f1ec;
+    }
+
+    .list-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #0f3460;
+    }
+
+    .list-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list-card ul li {
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+    }
+
+    /* ── Benefits checklist ── */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 10px 0;
+      font-size: 1rem;
+      border-bottom: 1px solid #e5e0d8;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    /* ── Pain points ── */
+    .pain-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .pain-list li {
+      background: #fff5f5;
+      border-right: 4px solid #e74c3c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      font-size: 0.98rem;
+    }
+
+    /* ── Course stats bar ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      background: #0f3460;
+      color: #fff;
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f5a623;
+      display: block;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.88rem;
+      opacity: 0.85;
+    }
+
+    /* ── Module cards ── */
+    .module {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e5e0d8;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .module-num {
+      background: #0f3460;
+      color: #f5a623;
+      font-weight: 800;
+      font-size: 1rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f3460;
+      line-height: 1.4;
+    }
+
+    .module-subtitle {
+      font-size: 0.88rem;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .module ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+
+    .module ul li {
+      padding: 6px 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #f0ece6;
+    }
+
+    .module ul li:last-child { border-bottom: none; }
+
+    .module ul li::before {
+      content: "•  ";
+      color: #f5a623;
+      font-weight: 700;
+    }
+
+    .module-outcome {
+      background: #eef6ff;
+      border-right: 3px solid #0f3460;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.93rem;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* ── Outcomes summary ── */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 560px) {
+      .outcomes-grid { grid-template-columns: 1fr; }
+    }
+
+    .outcome-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 0.97rem;
+      font-weight: 600;
+      border: 1px solid #e5e0d8;
+    }
+
+    /* ── Negative outcomes ── */
+    .negative-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .negative-list li {
+      background: #fff5f5;
+      border-right: 4px solid #e74c3c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      font-size: 0.98rem;
+    }
+
+    /* ── Instructor ── */
+    .instructor-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e5e0d8;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .instructor-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f3460;
+      margin-bottom: 20px;
+    }
+
+    .instructor-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .instructor-card ul li {
+      padding: 10px 0;
+      font-size: 0.97rem;
+      border-bottom: 1px solid #f0ece6;
+      line-height: 1.6;
+    }
+
+    .instructor-card ul li:last-child { border-bottom: none; }
+
+    .instructor-card ul li::before {
+      content: "▪  ";
+      color: #f5a623;
+      font-weight: 700;
+    }
+
+    /* ── Pricing ── */
+    .pricing-box {
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px 32px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(15,52,96,0.25);
+    }
+
+    .pricing-box .price-old {
+      font-size: 1.2rem;
+      text-decoration: line-through;
+      opacity: 0.6;
+      margin-bottom: 4px;
+    }
+
+    .pricing-box .price-new {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #f5a623;
+      line-height: 1.1;
+    }
+
+    .pricing-box .price-label {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 24px;
+    }
+
+    .fire-badge {
+      display: inline-block;
+      background: #f5a623;
+      color: #1a1a1a;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 8px 22px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    /* ── Bonuses ── */
+    .bonus-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .bonus-list li {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      font-size: 0.97rem;
+      border: 1px solid #e5e0d8;
+      font-weight: 600;
+    }
+
+    section:nth-child(even) .bonus-list li {
+      background: #f9f7f4;
+    }
+
+    .bonus-list li::before {
+      content: "🎁  ";
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e0d8;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+
+    section:nth-child(even) .faq-item {
+      background: #f4f1ec;
+    }
+
+    .faq-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f3460;
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      font-size: 0.96rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      color: #fff;
+      text-align: center;
+      padding: 72px 20px;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .final-cta p {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a1a1a;
+      color: #888;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.85rem;
+    }
+
+    /* ── Responsive tweaks ── */
+    @media (max-width: 640px) {
+      .stats-bar { gap: 24px; }
+      .module { padding: 22px 18px; }
+      .pricing-box { padding: 36px 20px; }
     }
   </style>
 </head>
-
 <body>
 
-<iframe
-  src="https://claude.site/public/artifacts/876e7628-aba0-43da-9df5-765c61ae1f43/embed"
-  title="Claude Artifact"
-  allow="clipboard-write"
-  allowfullscreen>
-</iframe>
+<!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">הקורס שחיכיתם לו — עכשיו אונליין</span>
+    <h1>"ארגז הכלים הדיגיטלי<br>מהשטח לאונליין"</h1>
+    <h2>קורס פרקטי ל־AI, Canva, מצגות, וידאו, עמידה מול קהל וכתיבה שיווקית<br>למנהלים, עצמאיים ואנשי מקצוע</h2>
+    <p class="hero-tagline">מפסיקים לאלתר. מתחילים לשלוט בתוכן, במסר ובנוכחות הדיגיטלית.</p>
+    <p class="hero-sub">עכשיו ב־70% הנחה 🔥</p>
+    <div class="price-badge">
+      <div class="discount-label">מחיר מיוחד לזמן מוגבל</div>
+      <div class="price-main">197 ₪ בלבד</div>
+    </div>
+    <br>
+    <a href="#pricing" class="btn">🔘 לרכישה במחיר מיוחד — לחצו כאן</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ NO NEED / NEED ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">אפשר לעבוד חכם — גם בלי להיות "טכנולוגיים"</h2>
+    <div class="two-col">
+      <div class="list-card">
+        <h3>לא צריך:</h3>
+        <ul>
+          <li>❌ ידע מוקדם</li>
+          <li>❌ אנגלית שוטפת</li>
+          <li>❌ תוכנות יקרות</li>
+          <li>❌ שעות לימוד אינסופיות</li>
+        </ul>
+      </div>
+      <div class="list-card">
+        <h3>צריך:</h3>
+        <ul>
+          <li>✔ שיטה ברורה</li>
+          <li>✔ תרגול נכון</li>
+          <li>✔ ליווי מקצועי</li>
+        </ul>
+        <p style="margin-top:14px; font-size:0.97rem; font-weight:600;">וזה בדיוק מה שיש כאן.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WHAT'S INSIDE (overview) ══════════════════════ -->
+<section>
+  <div class="container">
+    <p style="text-align:center; font-size:0.98rem; color:#555; margin-bottom:28px;">
+      אחרי מאות שעות הדרכה לארגונים, שכירים ועצמאיים,<br>
+      זיקקתי את מה שבאמת עובד — לשיטה פרקטית מהשטח.
+    </p>
+    <h2 class="section-title">מה מחכה לכם בתוך הקורס?</h2>
+    <ul class="checklist">
+      <li>✅ שליטה ב־AI לעבודה יומיומית</li>
+      <li>✅ יצירת מצגות ועיצובים ב־Canva</li>
+      <li>✅ צילום ועריכת וידאו מהנייד</li>
+      <li>✅ עמידה בטוחה מול קהל ומצלמה</li>
+      <li>✅ כתיבה שיווקית שמניעה לפעולה</li>
+      <li>✅ שיטה אחת שעובדת לאורך זמן</li>
+    </ul>
+    <p style="margin-top:28px; font-size:1.05rem; font-weight:700; text-align:center;">
+      הגיע הזמן להפסיק לאלתר — ולהתחיל להוביל.
+    </p>
+    <div class="btn-center">
+      <a href="#pricing" class="btn">🔘 אני רוצה לרכוש את הקורס בהנחה של 70%</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PAIN POINTS ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">מרגישים שהעולם הדיגיטלי רץ מהר מדי?</h2>
+    <ul class="pain-list">
+      <li>שומעים על AI בכל מקום — ולא יודעים מאיפה להתחיל</li>
+      <li>פותחים Canva — ומרגישים אבודים</li>
+      <li>מצלמים סרטון — ומתבאסים מהתוצאה</li>
+      <li>כותבים מייל — ומוחקים שוב ושוב</li>
+      <li>בונים מצגת — והיא לא מחזיקה קהל</li>
+      <li>עומדים מול אנשים — והקול רועד</li>
+    </ul>
+    <p style="margin-top:28px; font-size:1.05rem; font-weight:700; text-align:center;">
+      מוכר? אתם לא לבד.<br>
+      בדיוק בשביל זה נבנה הקורס הדיגיטלי,<br>
+      "ארגז הכלים הדיגיטלי מהשטח לאונליין"
+    </p>
+    <p style="text-align:center; margin-top:14px; font-size:0.97rem; color:#444;">
+      קורס אחד שמחבר בין AI + כתיבה + עיצוב + וידאו + מצגות + ואיך לדבר ולהציג מול קהל
+    </p>
+    <div class="btn-center">
+      <a href="#pricing" class="btn">🔘 אני רוצה לרכוש את הקורס ב־197 ₪ במקום 650</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ STATS BAR ══════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-number">~70</span>
+    <span class="stat-label">שיעורים</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">~8</span>
+    <span class="stat-label">שעות תוכן יישומי</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">6</span>
+    <span class="stat-label">פרקים מרכזיים</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">∞</span>
+    <span class="stat-label">גישה לכל החיים</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ STRUCTURE ══════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">איך זה בנוי?</h2>
+    <div style="text-align:center; font-size:1rem; margin-bottom:12px;">
+      ✔ כ־70 שיעורים &nbsp;|&nbsp; ✔ כ־8 שעות תוכן יישומי &nbsp;|&nbsp; ✔ למידה מהשטח
+    </div>
+    <p style="text-align:center; font-size:0.97rem; color:#555;">
+      כל פרק = כלי → תרגול → תוצאה
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ MODULES ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">מה לומדים בקורס?<br><span style="font-size:1rem; font-weight:400; color:#555;">מעטפת מלאה לעבודה חכמה בדיגיטל</span></h2>
+    <p style="text-align:center; margin-bottom:36px; font-size:0.97rem; color:#555;">
+      הקורס בנוי מ־6 פרקים מרכזיים, שנותנים לכם כלים מעשיים לשימוש יומיומי — בעבודה, בעסק ובארגון.
+    </p>
+
+    <!-- Module 1 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">1</div>
+        <div>
+          <div class="module-title">בינה מלאכותית (AI) — לעבוד חכם, לא קשה</div>
+        </div>
+      </div>
+      <ul>
+        <li>עבודה חכמה עם ChatGPT, Claude, Gemini, Copilot, Notebook ו־Perplexity</li>
+        <li>מחקר, סיכום, כתיבה ויצירת תוכן</li>
+        <li>יצירת תמונות עם Nano Banana, Copilot, ChatGPT ו־Grok</li>
+        <li>בניית פרומפטים מדויקים</li>
+        <li>יצירת מצגות עם Gamma ו־Genspark</li>
+        <li>יצירת וידאו ושירים עם AI (Suno למתחילים)</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> חוסכים שעות עבודה, מקבלים תוצרים איכותיים, ומפסיקים לנחש.
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">2</div>
+        <div>
+          <div class="module-title">להעביר מסר שמקשיבים לו — סיפור, שפת גוף והשפעה</div>
+          <div class="module-subtitle">איך לדבר — ולהיות באמת מובנים.</div>
+        </div>
+      </div>
+      <ul>
+        <li>איך לבנות מסר שאנשים רוצים להקשיב לו</li>
+        <li>עקרונות הסטוריטלינג שמחברים קהל</li>
+        <li>שימוש מודע בשפת גוף להעברת מסר</li>
+        <li>התאמת טון, תנועה וקצב לדיבור</li>
+        <li>קריאת שפת הגוף של הקהל בזמן אמת</li>
+        <li>זיהוי עניין, בלבול או ניתוק — והתאמת המסר בהתאם</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> מדברים בביטחון, מרגישים את הקהל, ויודעים להחזיק אותו איתכם עד הסוף.
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">3</div>
+        <div>
+          <div class="module-title">כתיבה שמניעה לפעולה — מיילים, פוסטים ומסרים שעובדים</div>
+          <div class="module-subtitle">איך לכתוב — ושיקראו עד הסוף.</div>
+        </div>
+      </div>
+      <ul>
+        <li>איך לנסח מסר ברור שאי אפשר לפספס</li>
+        <li>בניית כותרות ופתיחים שעוצרים גלילה</li>
+        <li>כתיבה שמחוברת לרגש ולצרכים של הקהל</li>
+        <li>ניסוח מיילים שמקבלים פתיחות ותגובות</li>
+        <li>כתיבה לרשתות, מצגות ודפי מכירה</li>
+        <li>התאמת סגנון כתיבה לפלטפורמות ולקהלים שונים</li>
+        <li>שילוב AI בתהליך הכתיבה — בלי לאבד קול אישי</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> כותבים בביטחון, חוסכים זמן, ומקבלים יותר פניות, יותר תגובות ויותר השפעה.
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">4</div>
+        <div>
+          <div class="module-title">מצגות שמובילות החלטה — מבנה, סיפור ושכנוע</div>
+          <div class="module-subtitle">איך להפוך שקפים — למסע שמזיז אנשים.</div>
+        </div>
+      </div>
+      <ul>
+        <li>בניית מבנה מצגת שמספר סיפור ברור</li>
+        <li>חיבור בין נתונים, רגש ומסר מרכזי</li>
+        <li>יצירת פתיחה שמושכת הקשבה מהשנייה הראשונה</li>
+        <li>עיצוב שקפים שמחזקים את המסר — בלי עומס</li>
+        <li>שימוש נכון בגרפים, תמונות וויזואל</li>
+        <li>התאמת מצגת לפגישה, הרצאה, הנהלה או מכירה</li>
+        <li>שילוב AI ו־Canva בתהליך הבנייה</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> מציגים בביטחון, משכנעים בבהירות, ומקבלים יותר "כן" בפגישות ובהרצאות.
+      </div>
+    </div>
+
+    <!-- Module 5 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">5</div>
+        <div>
+          <div class="module-title">איך לעצב לבד — ולהיראות מקצועיים (Canva + AI)</div>
+          <div class="module-subtitle">איך להפסיק לאלתר — ולהתחיל להיראות טוב.</div>
+        </div>
+      </div>
+      <ul>
+        <li>עבודה פשוטה וחכמה עם Canva</li>
+        <li>שימוש ב־Canva AI לרעיונות, טקסטים ותמונות</li>
+        <li>בניית קו עיצובי אחיד שמתאים לכם</li>
+        <li>עיצוב פוסטים, מצגות וחומרים שיווקיים</li>
+        <li>יצירת תבניות קבועות שחוסכות זמן</li>
+        <li>התאמת עיצובים לרשתות ולפלטפורמות</li>
+        <li>עבודה נכונה עם צבעים, פונטים ותמונות</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> נראות מקצועית ועקבית, פחות תלות באחרים, ויותר ביטחון במה שאתם מפרסמים.
+      </div>
+    </div>
+
+    <!-- Module 6 -->
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num">6</div>
+        <div>
+          <div class="module-title">לצלם, לערוך ולהרגיש טוב מול מצלמה</div>
+          <div class="module-subtitle">איך ליצור סרטונים טובים — בלי ציוד ובלי לחץ.</div>
+        </div>
+      </div>
+      <ul>
+        <li>איך לצלם נכון עם הסמארטפון — גם בלי ניסיון קודם</li>
+        <li>בחירת זוויות, תאורה ופריימים מחמיאים</li>
+        <li>צילום עצמי טבעי בלי מבוכה</li>
+        <li>עריכה פשוטה ומהירה מהנייד</li>
+        <li>הוספת טקסטים, מוזיקה וכיתוביות</li>
+        <li>התאמת סרטונים לסטורי, ריל, וידאו והדרכות</li>
+        <li>עבודה עם אפליקציות עריכה נפוצות</li>
+      </ul>
+      <div class="module-outcome">
+        <strong>מה יוצא לכם מזה:</strong> סרטונים שנראים מקצועיים, יותר ביטחון מול מצלמה, ויותר נוכחות בדיגיטל.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ OUTCOMES ══════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">מה יוצא לכם מזה — ולמה זה משנה עכשיו</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-item">✔️ עובדים מהר יותר ומקצרים תהליכים</div>
+      <div class="outcome-item">✔️ מדברים בביטחון מול אנשים ומצלמה</div>
+      <div class="outcome-item">✔️ יוצרים תוכן ועיצוב לבד — בלי תלות</div>
+      <div class="outcome-item">✔️ נראים מקצועיים בכל פלטפורמה</div>
+      <div class="outcome-item" style="grid-column: 1 / -1;">✔️ שולטים בדיגיטל במקום שהוא ישלוט בכם</div>
+    </div>
+
+    <div style="margin-top:36px; text-align:center;">
+      <p style="font-size:1.05rem; font-weight:700; margin-bottom:8px;">בשורה התחתונה</p>
+      <p style="font-size:0.98rem; color:#444; margin-bottom:28px;">
+        לא יוצאים רק עם ידע.<br>יוצאים עם שיטה שעובדת לאורך זמן.
+      </p>
+    </div>
+
+    <p style="font-size:1rem; font-weight:700; text-align:center; margin-bottom:16px;">ומה קורה למי שמחכה?</p>
+    <ul class="negative-list">
+      <li>❌ מבזבז שעות מול המחשב</li>
+      <li>❌ נשחק בעומס ולחץ בלהספיק</li>
+      <li>❌ תלוי באנשי מקצוע</li>
+      <li>❌ מאבד יתרון תחרותי</li>
+    </ul>
+    <p style="text-align:center; margin-top:20px; font-size:0.97rem; font-weight:600; color:#e74c3c;">
+      הפער רק הולך וגדל.
+    </p>
+    <div class="btn-center">
+      <a href="#pricing" class="btn">זה בדיוק מה שחיפשתי — נרשמ/ת עכשיו</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ INSTRUCTOR ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">רקע המרצה</h2>
+    <div class="instructor-card">
+      <h3>מאיה סימון</h3>
+      <p style="margin-bottom:20px; font-size:0.97rem; color:#555; line-height:1.7;">
+        הקורס מבוסס על ניסיונה האישי והמקצועי של מאיה סימון, ועל עבודה רציפה עם ארגונים, מנהלים ובעלי עסקים, המעידה על האפקטיביות והיישומיות של התכנים.
+      </p>
+      <ul>
+        <li><strong>ניסיון מוכח:</strong> מאות שעות הדרכה, ליווי והכשרה לארגונים, שכירים ועצמאיים ברחבי הארץ.</li>
+        <li><strong>עבודה עם גופים מובילים:</strong> העברת סדנאות והכשרות לגופים כגון המכון למנהיגות ישראלית בית ברל, הכשרה לביטוח, פריגת וארגונים נוספים מהמגזר הציבורי והעסקי.</li>
+        <li><strong>מעורבות ציבורית וניהולית:</strong> חברת מועצת עיר ומחזיקת תיק קידום עסקים, עם היכרות עמוקה של האתגרים בשטח וראייה מערכתית רחבה.</li>
+        <li><strong>הכרה מקצועית והסמכה:</strong> העברת קורסים והכשרות מוכרות לגמול והשתלמות במסגרת מכון הנרייטה סאלד ובשיתוף גופים אקדמיים ומקצועיים.</li>
+        <li><strong>שליחות מקצועית:</strong> מחויבות להנגשת ידע מעשי ועדכני במחיר נגיש, מתוך תפיסה ששליטה בדיגיטל וב־AI היא כלי מרכזי לצמיחה אישית, עסקית וארגונית.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PRICING ═══════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title">הצעה מיוחדת לזמן מוגבל</h2>
+    <p style="text-align:center; margin-bottom:32px; font-size:0.97rem; color:#555;">
+      המטרה שלי היא להנגיש ידע — ולכן לזמן מוגבל, החלטתי לחתוך את המחיר.
+    </p>
+    <div class="pricing-box">
+      <div class="price-old">מחיר מלא: 650 ₪</div>
+      <div class="price-new">197 ₪</div>
+      <div class="price-label">בלבד</div>
+      <div class="fire-badge">🔥 70% הנחה 🔥</div>
+      <br>
+      <a href="#" class="btn" style="font-size:1.1rem; padding:18px 44px;">🔘 כן, אני מצטרפ/ת ב־197 ₪</a>
+    </div>
+
+    <h3 style="margin-top:48px; margin-bottom:20px; font-size:1.2rem; font-weight:700; color:#0f3460; text-align:center;">ערך מוסף ובונוסים</h3>
+    <ul class="bonus-list">
+      <li>חוברת עבודה דיגיטלית — לסיכום החומר, תרגול והטמעה יומיומית.</li>
+      <li>טבלת כלי AI מרוכזת — מאגר של עשרות כלים שנבדקו אישית, מסווגים לפי שימושים, יכולות ורמת התאמה לעבודה מקצועית.</li>
+      <li>גישה לכל החיים — כולל עדכונים שיעלו בהמשך על כלים חדשים.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ FAQ ════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">שאלות נפוצות</h2>
+
+    <div class="faq-item">
+      <h4>האם הקורס מתאים למתחילים?</h4>
+      <p>כן, הקורס בנוי בגובה העיניים ומסביר הכל מהבסיס.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>מה אם הכלים ישתנו?</h4>
+      <p>הגישה שלי היא ללמד את ה"שיטה". הכלים והתוכנות מתעדכנים כל הזמן, אבל הדרך שבה כותבים, מעצבים, מציגים וחושבים אסטרטגית נשארת איתכם לתמיד.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>כמה זמן יש לנו גישה?</h4>
+      <p>לכל החיים! כולל עדכונים שאעלה בהמשך על כלים חדשים.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA ════════════════════════════════════ -->
+<div class="final-cta">
+  <div class="container">
+    <h2>זה המקום להתחיל.</h2>
+    <p>
+      אם חשוב לכם לעבוד חכם, להרגיש בשליטה ולבנות ביטחון דיגיטלי ותקשורתי אמיתי —
+      זה הרגע לפתוח את ארגז הכלים שלכם.<br><br>
+      ארגז הכלים הדיגיטלי – מהשטח לאונליין – מחכה לכם עכשיו.
+    </p>
+    <a href="#pricing" class="btn" style="font-size:1.15rem; padding:20px 48px;">
+      ההשקה התחילה — אני רוצה את הקורס עכשיו
+    </a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer>
+  <p>© 2024 מאיה סימון — ארגז הכלים הדיגיטלי. כל הזכויות שמורות.</p>
+</footer>
 
 </body>
 </html>
-
