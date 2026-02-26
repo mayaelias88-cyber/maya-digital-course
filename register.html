@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרשמה לקורס — מאיה סימון</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #d4af37, #f4d03f, #d4af37);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: #1a1a2e;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            color: #1a1a2e;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+            padding-left: 40px;
+        }
+
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #d4af37;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .back-link a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .privacy-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .privacy-note a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .success-message h2 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #666;
+        }
+
+        .form-content.hide {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 35px 25px;
+            }
+
+            .name-row {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                </svg>
+            </div>
+            <h1>הרשמה לקורס</h1>
+            <p class="subtitle">מלאו את הפרטים ונחזור אליכם בהקדם</p>
+        </div>
+
+        <form class="form-content" id="registrationForm">
+            <div class="name-row">
+                <div class="form-group">
+                    <label for="firstName" class="required">שם פרטי</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="הכניסו שם פרטי" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="required">שם משפחה</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="הכניסו שם משפחה" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="required">טלפון נייד</label>
+                <input type="tel" id="phone" name="phone" placeholder="050-0000000" pattern="[0-9]{2,3}-?[0-9]{7}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="required">כתובת אימייל</label>
+                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="course" class="required">בחירת קורס</label>
+                <select id="course" name="course" required>
+                    <option value="" disabled selected>בחרו קורס מהרשימה</option>
+                    <option value="digital-toolbox">ארגז הכלים הדיגיטלי — מהשטח לאונליין</option>
+                    <option value="public-speaking">דיבור מול קהל</option>
+                    <option value="presentation-skills">מיומנויות מצגת</option>
+                    <option value="leadership">מנהיגות והובלה</option>
+                    <option value="communication">תקשורת אפקטיבית</option>
+                    <option value="sales">מכירות ושכנוע</option>
+                    <option value="marketing">שיווק דיגיטלי</option>
+                    <option value="personal-branding">מיתוג אישי</option>
+                    <option value="negotiation">משא ומתן</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">שליחת הרשמה</button>
+
+            <p class="privacy-note">
+                בלחיצה על "שליחת הרשמה" אתם מאשרים את <a href="#">תנאי השימוש</a> ו<a href="#">מדיניות הפרטיות</a>
+            </p>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+            </div>
+            <h2>תודה על ההרשמה!</h2>
+            <p>קיבלנו את הפרטים שלכם ונחזור אליכם בהקדם.</p>
+        </div>
+
+        <p class="back-link"><a href="index.html">← חזרה לדף הקורס</a></p>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                course: document.getElementById('course').value
+            };
+
+            console.log('Form Data:', formData);
+
+            document.querySelector('.form-content').classList.add('hide');
+            document.getElementById('successMessage').classList.add('show');
+        });
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 3) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 10);
+            }
+            e.target.value = value;
+        });
+
+        // Pre-select course from URL query param (e.g. ?course=digital-toolbox)
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const course = params.get('course');
+            if (course) {
+                const select = document.getElementById('course');
+                const option = select.querySelector(`option[value="${CSS.escape(course)}"]`);
+                if (option) select.value = course;
+            }
+        })();
+    </script>
+</body>
+</html>
